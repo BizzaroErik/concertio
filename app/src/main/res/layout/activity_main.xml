@@ -67,13 +67,14 @@
         android:layout_marginTop="8dp"
         >
         <ImageView
-            android:id="@+id/discover_activity"
+            android:id="@+id/discover_act"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:src="@drawable/ic_main_note"/>
 
         <ImageView
+            android:id="@+id/concert_act"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,6 +82,7 @@
             />
 
         <ImageView
+            android:id="@+id/playlist_act"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -88,10 +90,12 @@
             />
 
         <ImageView
+            android:id="@+id/camera_act"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_main_camera"/>
+            android:src="@drawable/ic_main_camera"
+            android:onClick="takePicture"/>
     </LinearLayout>
 
     <LinearLayout
