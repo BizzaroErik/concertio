@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:orientation="horizontal"
+    >
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_main_record"
+        android:layout_weight="1"
+
+        />
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3">
+
+        <TextView
+            android:id="@+id/concert_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:text="Vampire Weekend"
+            android:textStyle="bold"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:id="@+id/concert_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="featuring lisp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_below="@+id/concert_title"
+            />
+        <TextView
+            android:id="@+id/concert_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aragon Ballroom"
+            android:layout_below="@+id/concert_subtitle"
+            android:textSize="16dp"/>
+        <TextView
+            android:id="@+id/concert_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/concert_location"
+            android:text="August 6, 2020"
+            android:textSize="16dp"
+            />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_main_ticket"
+        android:layout_weight="1"
+
+        />
+
+
+
+</LinearLayout>
