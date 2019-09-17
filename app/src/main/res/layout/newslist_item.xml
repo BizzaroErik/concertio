@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:src="@drawable/ic_main_person"
+        android:visibility="gone"
         />
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="5">
+        android:layout_weight="5"
+        android:layout_margin="8dp">
 
 
 
@@ -28,7 +30,6 @@
             android:layout_marginEnd="8dp"
             android:textStyle="bold"
             android:textSize="24sp"
-            android:maxLength="25"
             />
         <TextView
             android:id="@+id/article_body"
@@ -37,7 +38,8 @@
             android:text="Some article information we'll see how long this a gonna go"
             android:layout_below="@+id/article_title"
             android:maxLength="150"
-            android:maxLines="3"/>
+            android:maxLines="3"
+            android:layout_marginLeft="8dp"/>
 <!--        <ImageView
             android:id="@+id/article_image"
             android:layout_width="wrap_content"

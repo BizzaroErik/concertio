@@ -12,12 +12,14 @@
         android:layout_height="match_parent"
         android:src="@drawable/ic_main_record"
         android:layout_weight="1"
+        android:visibility="gone"
 
         />
     <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3">
+        android:layout_weight="3"
+        android:layout_margin="8dp">
 
         <TextView
             android:id="@+id/concert_title"
@@ -29,7 +31,7 @@
             android:textStyle="bold"
             android:textSize="24sp"/>
 
-        <TextView
+<!--        <TextView
             android:id="@+id/concert_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,29 +39,33 @@
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_below="@+id/concert_title"
-            />
+            />-->
         <TextView
             android:id="@+id/concert_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aragon Ballroom"
-            android:layout_below="@+id/concert_subtitle"
-            android:textSize="16dp"/>
+            android:layout_below="@+id/concert_title"
+            android:textSize="16dp"
+            android:layout_marginLeft="8dp"/>
         <TextView
             android:id="@+id/concert_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/concert_location"
             android:text="August 6, 2020"
-            android:textSize="16dp"
+            android:textSize="12dp"
+            android:layout_marginLeft="8dp"
             />
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/ticket_link"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:src="@drawable/ic_main_ticket"
         android:layout_weight="1"
+        android:padding="16dp"
 
         />
 

@@ -6,14 +6,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.concertioApp.com.concertioApp.objectAdapter.ConcertItem;
 import com.concertioApp.com.concertioApp.viewAdapter.ConcertListAdapter;
 import com.concertioApp.concertioFragments.DatePickFragment;
+import com.concertioApp.systemUtils.JSONtoConcertItems;
+import com.concertioApp.systemUtils.JSONtoNewsItems;
+
+import org.json.JSONObject;
 
 import java.util.LinkedList;
 
@@ -23,7 +35,9 @@ public class SearchConcerts extends AppCompatActivity implements AdapterView.OnI
     String inputDate;
     private RecyclerView mRecyclerView;
     private ConcertListAdapter mAdapter;
-    private final LinkedList<String> wordList = new LinkedList<>();
+    private LinkedList<ConcertItem> eventList = new LinkedList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +54,37 @@ public class SearchConcerts extends AppCompatActivity implements AdapterView.OnI
             spin.setAdapter(spinAdapter);
         }
 
-        for(int i = 0; i<100; i++){
-            wordList.addLast(i +"holder");
-        }
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        //Todo: make url dynamic, with todays date, and possibly add location data
+        //default url
+        String url ="";
+        JsonObjectRequest jsonConcertRequest = new JsonObjectRequest(Request.Method.GET, url, null, new SearchConcerts.ResponseListener(), new SearchConcerts.ErrorListener());
+        queue.add(jsonConcertRequest);
 
         mRecyclerView = findViewById(R.id.recyclerConcerts);
-        mAdapter = new ConcertListAdapter(this, wordList);
+        mAdapter = new ConcertListAdapter(this, eventList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private class ResponseListener implements Response.Listener<JSONObject>{
+
+        @Override
+        public void onResponse(JSONObject response) {
+            Log.d("RESPONSE", response.toString());
+
+            //do the work to turn json into news blocks
+            eventList = JSONtoConcertItems.convertToConcertList(response, eventList);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+    private class ErrorListener implements Response.ErrorListener{
+        @Override
+        public void onErrorResponse(VolleyError error){
+            Log.d("RESPONSE", error.toString());
+        }
     }
 
     @Override

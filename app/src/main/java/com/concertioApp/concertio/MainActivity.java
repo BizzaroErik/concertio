@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
         //Todo: make url dynamic, with todays date, and possibly add location data
-        String url ="https://newsapi.org/v2/everything?q=Music&from=2019-09-08&apiKey=";
+        String url ="";
         JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.GET, url, null, new ResponseListener(), new ErrorListener());
         queue.add(jsonRequest);
 
