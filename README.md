@@ -45,6 +45,8 @@ A news and concert ticket information app designed to help connect users with ev
 *   RecyclerViews
 *   Adapters
 *   Volley in place of AsyncTask
+*   Calendar Fragment
+*   Spinner
 *   Dynamic Api calls
 *   Embedded links to Article URLs
 *   Camera capabilities
