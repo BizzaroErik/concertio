@@ -61,6 +61,7 @@ A news and concert ticket information app designed to help connect users with ev
 
 
 *   Ongoing Project
+*   No domain rights to Concertio yet
 
 <span style="font-family:Papyrus; font-size:2em;">**Tested**</span>
 
