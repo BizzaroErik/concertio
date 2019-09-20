@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildTypes.each{
+        it.buildConfigField 'String', 'NEWS_API_KEY', News_ApiKey
+        it.buildConfigField 'String', 'EVENTS_API_KEY', Events_ApiKey
+    }
 }
 
 dependencies {

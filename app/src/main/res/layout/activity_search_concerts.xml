@@ -6,34 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".SearchConcerts">
 
-
+    <fragment
+        android:id="@+id/dashboard_parent1"
+        android:name="com.concertioApp.concertioFragments.DashboardFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout="@layout/fragment_dashboard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <TextView
         android:id="@+id/concertActivity_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Concerts"
-        android:textSize="48sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/line_break"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
         android:layout_margin="8dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/concertActivity_title"
-        tools:layout_editor_absoluteX="8dp" />
+        android:text="Concerts"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_parent1" />
 
     <EditText
         android:id="@+id/searchText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="8dp"
         android:hint="Search concerts"
-        app:layout_constraintTop_toBottomOf="@id/line_break"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintTop_toBottomOf="@id/concertActivity_title" />
 
     <LinearLayout
         android:id="@+id/searchFields"

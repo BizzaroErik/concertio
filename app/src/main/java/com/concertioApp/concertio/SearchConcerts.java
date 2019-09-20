@@ -23,10 +23,7 @@ import com.concertioApp.com.concertioApp.objectAdapter.ConcertItem;
 import com.concertioApp.com.concertioApp.viewAdapter.ConcertListAdapter;
 import com.concertioApp.concertioFragments.DatePickFragment;
 import com.concertioApp.systemUtils.JSONtoConcertItems;
-import com.concertioApp.systemUtils.JSONtoNewsItems;
-
 import org.json.JSONObject;
-
 import java.util.LinkedList;
 
 public class SearchConcerts extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
