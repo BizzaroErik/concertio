@@ -6,12 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class JSONtoNewsItems {
 
-    public static LinkedList<NewsItem> convertToNewsList(JSONObject jo, LinkedList<NewsItem> nLL){
-       // LinkedList<NewsItem> nLL = new LinkedList<>();
+    public static ArrayList<NewsItem> convertToNewsList(JSONObject jo, ArrayList<NewsItem> nLL){
         try {
             JSONArray articleArray = jo.getJSONArray("articles");
 

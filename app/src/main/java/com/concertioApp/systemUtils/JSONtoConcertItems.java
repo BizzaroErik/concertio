@@ -6,12 +6,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class JSONtoConcertItems {
 
-    public static LinkedList<ConcertItem> convertToConcertList(JSONObject jo, LinkedList<ConcertItem> nLL){
-        // LinkedList<NewsItem> nLL = new LinkedList<>();
+    public static ArrayList<ConcertItem> convertToConcertList(JSONObject jo, ArrayList<ConcertItem> nLL){
         try {
             JSONObject jEvents = jo.getJSONObject("events");
             JSONArray articleArray = jEvents.getJSONArray("event");
@@ -26,5 +25,4 @@ public class JSONtoConcertItems {
         }
         return nLL;
     }
-
 }

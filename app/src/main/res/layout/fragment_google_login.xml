@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.concertioApp.concertioFragments.GoogleLogin">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+        <TextView
+            android:id="@+id/fragment_login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login ya bitch"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="42sp"/>
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_login_text"
+            android:layout_centerHorizontal="true"
+
+            />
+
+    </RelativeLayout>
+
+
+</FrameLayout>

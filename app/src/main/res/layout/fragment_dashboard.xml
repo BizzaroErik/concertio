@@ -5,16 +5,14 @@
     android:layout_height="wrap_content"
     tools:context="com.concertioApp.concertioFragments.DashboardFragment"
     android:id="@+id/dashboard_parent"
-
     >
-
 
     <LinearLayout
         android:id="@+id/main_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#D3D3D3"
+        android:background="@color/dashboard_background"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         android:layout_alignParentTop="true"
@@ -38,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="2"
-                android:text="Concert.io"
+                android:text="@string/app_title"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textStyle="bold" />
 
@@ -46,105 +44,63 @@
                 android:id="@+id/main_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:text="search, listen, connect, share!"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:text="@string/app_subtitle"
+                />
 
         </LinearLayout>
 
-
         <ImageView
             android:id="@+id/main_dropdown"
+            android:src="@drawable/ic_main_menu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/ic_main_menu"/>
+            />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/activities_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="8dp"
+        android:paddingTop="8dp"
         android:layout_below="@+id/main_header"
+
         >
-        <ImageView
+        <TextView
             android:id="@+id/discover_act"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_main_note"/>
-
-        <ImageView
-            android:id="@+id/concert_act"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_main_ticket"
-            />
-
-        <ImageView
-            android:id="@+id/playlist_act"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_main_cassette"
-            />
-
-        <ImageView
-            android:id="@+id/camera_act"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/ic_main_camera"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/activities_names_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@+id/activities_bar"
-
-        >
-        <TextView
-            android:id="@+id/discover_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_main_note"
             android:text="Discover"
-            android:gravity="center"/>
+            style="@style/dashboard_button"/>
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/concert_act"
+            android:drawableTop="@drawable/ic_main_ticket"
             android:text="Concerts"
-            android:gravity="center"/>
+            style="@style/dashboard_button"/>
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/playlist_act"
+            android:drawableTop="@drawable/ic_main_cassette"
             android:text="Playlist"
-            android:gravity="center"/>
+            style="@style/dashboard_button"/>
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:id="@+id/camera_act"
+            android:drawableTop="@drawable/ic_main_camera"
             android:text="Camera"
-            android:gravity="center"/>
+            style="@style/dashboard_button"/>
     </LinearLayout>
+
     <View
         android:id="@+id/line_break"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray"
-        android:layout_below="@id/activities_names_bar"/>
+        android:layout_below="@id/activities_bar"/>
 
     <LinearLayout
         android:id="@+id/menu_options"
@@ -154,18 +110,29 @@
         android:layout_alignParentRight="true"
         android:orientation="vertical"
         android:background="@color/button_pressed"
-        android:visibility="gone">
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:textAlignment="gravity"
+        android:gravity="right"
+        android:visibility="gone"
+        >
         <TextView
             android:id="@+id/profile_act"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Profile"
+            style="@style/drop_down"
             />
         <TextView
+            android:id="@+id/login_act"
+            android:text="Login"
+            android:onClick="showLogin"
+            style="@style/drop_down"/>
+        <TextView
             android:id="@+id/logout_act"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout"/>
+            android:text="Sign Out"
+            style="@style/drop_down"
+            />
     </LinearLayout>
 
 </RelativeLayout>

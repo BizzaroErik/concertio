@@ -14,20 +14,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.concertioApp.com.concertioApp.objectAdapter.ConcertItem;
 import com.concertioApp.concertio.R;
-import java.util.LinkedList;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 //Todo:Add api functionality
 //Todo:Add onTouchListener to ticket image
 public class ConcertListAdapter extends RecyclerView.Adapter<ConcertListAdapter.ConcertViewHolder> {
-    private final LinkedList<ConcertItem> concertList;
+    private final ArrayList<ConcertItem> concertList;
     private LayoutInflater mInflater;
 
     class ConcertViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         //public final TextView concertItemView;
         final ConcertListAdapter mAdapter;
-
         public final TextView concertTitle;
-        //public final TextView concertSubTitle;
         public final TextView concertLocation;
         public final TextView concertDate;
         public final ImageView concertTicket;
@@ -55,7 +55,6 @@ public class ConcertListAdapter extends RecyclerView.Adapter<ConcertListAdapter.
                     }
                 }
             });
-
         }
 
         @Override
@@ -67,7 +66,7 @@ public class ConcertListAdapter extends RecyclerView.Adapter<ConcertListAdapter.
         }
     }
 
-    public ConcertListAdapter(Context context, LinkedList<ConcertItem> concertList){
+    public ConcertListAdapter(Context context, ArrayList<ConcertItem> concertList){
         mInflater = LayoutInflater.from(context);
         this.concertList = concertList;
     }

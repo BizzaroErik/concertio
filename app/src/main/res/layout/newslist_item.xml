@@ -20,8 +20,6 @@
         android:layout_weight="5"
         android:layout_margin="8dp">
 
-
-
         <TextView
             android:id="@+id/article_title"
             android:layout_width="wrap_content"
@@ -40,13 +38,7 @@
             android:maxLength="150"
             android:maxLines="3"
             android:layout_marginLeft="8dp"/>
-<!--        <ImageView
-            android:id="@+id/article_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:layout_below="@+id/article_body"
-            />-->
+
         <TextView
             android:id="@+id/article_age"
             android:layout_width="wrap_content"
@@ -55,23 +47,6 @@
             android:text="2h"
             android:textSize="12sp"
             android:layout_below="@+id/article_body"/>
-<!--        <TextView
-            android:id="@+id/article_likes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/article_image"
-            android:layout_alignParentRight="true"
-            android:text="256"
-            android:padding="8dp"
-            />
-        <ImageView
-            android:id="@+id/like_star"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/article_likes"
-            android:layout_below="@+id/article_image"
-            android:src="@drawable/ic_main_heart"
-            android:padding="8dp"/>-->
     </RelativeLayout>
 
 

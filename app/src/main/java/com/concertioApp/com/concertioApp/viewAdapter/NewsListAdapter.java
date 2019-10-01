@@ -2,7 +2,10 @@ package com.concertioApp.com.concertioApp.viewAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.DateFormat;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.concertioApp.com.concertioApp.objectAdapter.NewsItem;
 import com.concertioApp.concertio.R;
-
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.WordViewHolder> {
-    private final LinkedList<NewsItem> newsList;
+    private final ArrayList<NewsItem> newsList;
     private LayoutInflater mInflater;
 
     class WordViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -43,24 +46,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.WordVi
             articleURL = "";
             this.mAdapter = adapter;
             itemView.setOnClickListener(this);
-
-            //keep, may change to just adding linking functionality to title textviews
-            /*articleTitle.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    Uri webPage = Uri.parse(articleURL);
-                    Context c = articleImage.getContext();
-                    Intent intent = new Intent(Intent.ACTION_VIEW, webPage);
-                    if(intent.resolveActivity(c.getPackageManager()) != null){
-                        c.startActivity(intent);
-                    }
-                }
-            });*/
-
         }
 
-
-        //Done: add functionality to go to that url, like start implicit browser intent
         @Override
         public void onClick(View v) {
             int mPosition = getLayoutPosition();
@@ -73,12 +60,10 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.WordVi
             if(intent.resolveActivity(c.getPackageManager()) != null){
                 c.startActivity(intent);
             }
-
         }
-
     }
 
-    public NewsListAdapter(Context context, LinkedList<NewsItem> nl){
+    public NewsListAdapter(Context context, ArrayList<NewsItem> nl){
         mInflater = LayoutInflater.from(context);
         this.newsList = nl;
     }
@@ -94,9 +79,8 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.WordVi
         NewsItem mCurrent = newsList.get(position);
         holder.articleTitle.setText(mCurrent.title);
         holder.articleBody.setText(mCurrent.desc);
-        holder.articleDate.setText(mCurrent.age);
+        holder.articleDate.setText(setDate(mCurrent.age));
         holder.articleURL = mCurrent.url;
-        //holder.wordItemView.setText("Text set");
     }
 
     @Override
@@ -104,5 +88,29 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.WordVi
         return newsList.size();
     }
 
+    public String setDate(String date){
+        int dateLength = 10;
+        DateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date today = new Date();
 
+        String todaysFullDate = simpleDate.format(today);
+        String todaysDate = todaysFullDate.substring(0, dateLength);
+        String articleDate = date.substring(0, dateLength);
+
+        if(todaysDate.equals(articleDate)){
+            Log.d("AGE", "DATE CHECK: "+ todaysDate);
+            String todayHours = todaysFullDate.substring(dateLength+1, dateLength+3);
+            String articleHours = date.substring(dateLength+1, dateLength+3);
+            int hours = Integer.parseInt(todayHours) - Integer.parseInt(articleHours);
+            return hours + " hours ago";
+        }
+        else{
+            String dayArticle = articleDate.substring(dateLength-2, dateLength);
+            String dayToday = todaysDate.substring(dateLength-2, dateLength);
+            int age = Integer.parseInt(dayArticle) - Integer.parseInt(dayToday);
+            Log.d("AGE", "Days Difference: "+ age);
+            return age +" days ago";
+        }
+
+    }
 }

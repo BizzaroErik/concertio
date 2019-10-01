@@ -7,7 +7,9 @@ import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.concertioApp.concertio.MainActivity;
 import com.concertioApp.concertio.R;
@@ -32,30 +35,25 @@ import static androidx.core.content.FileProvider.getUriForFile;
  * A simple {@link Fragment} subclass.
  */
 public class DashboardFragment extends Fragment implements View.OnTouchListener{
-    String currentPhotoPath;
     private boolean isMenuVisible = false;
-    LinearLayout menuOptions;
-
     static final int REQUEST_TAKE_PHOTO = 1;
+    LinearLayout menuOptions;
+    String currentPhotoPath;
+
     public DashboardFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
-        ImageView discover = v.findViewById(R.id.discover_act);
-        ImageView concert = v.findViewById(R.id.concert_act);
-        ImageView playlist = v.findViewById(R.id.playlist_act);
-        ImageView camera = v.findViewById(R.id.camera_act);
-
-/*        discover.setOnClickListener(this);
-        concert.setOnClickListener(this);
-        playlist.setOnClickListener(this);
-        camera.setOnClickListener(this);*/
+        TextView discover   = v.findViewById(R.id.discover_act);
+        TextView concert    = v.findViewById(R.id.concert_act);
+        TextView playlist   = v.findViewById(R.id.playlist_act);
+        TextView camera     = v.findViewById(R.id.camera_act);
+        TextView login      = v.findViewById(R.id.login_act);
 
         discover.setOnTouchListener(this);
         concert.setOnTouchListener(this);
@@ -63,29 +61,29 @@ public class DashboardFragment extends Fragment implements View.OnTouchListener{
         camera.setOnTouchListener(this);
 
         menuOptions = v.findViewById(R.id.menu_options);
-        ImageView menu = v.findViewById(R.id.main_dropdown);
+        final ImageView menu = v.findViewById(R.id.main_dropdown);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(!isMenuVisible){
                     menuOptions.setVisibility(View.VISIBLE);
+                    menu.setBackgroundColor(Color.parseColor("#777777"));
                 }
                 else{
                     menuOptions.setVisibility(View.INVISIBLE);
+                    menu.setBackgroundColor(Color.TRANSPARENT);
                 }
                 isMenuVisible = !isMenuVisible;
             }
         });
-
+        login.setOnTouchListener(this);
         return v;
-
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction()==MotionEvent.ACTION_DOWN){
             view.setBackgroundColor(Color.parseColor("#777777"));
-
             switch(view.getId()){
                 case R.id.discover_act:
                     launchDiscoverActivity();
@@ -98,6 +96,8 @@ public class DashboardFragment extends Fragment implements View.OnTouchListener{
                 case R.id.camera_act:
                     dispatchTakePictureIntent();
                     break;
+                case R.id.login_act:
+                    showLogin(view);
                 default:
                     Log.d("onClick", "on click for fragment triggered");
             }
@@ -108,36 +108,21 @@ public class DashboardFragment extends Fragment implements View.OnTouchListener{
             return true;
     }
 
-/*    @Override
-    public void onClick(View v){
-        switch(v.getId()){
-            case R.id.discover_act:
-                launchDiscoverActivity();
-                break;
-            case R.id.playlist_act:
-                break;
-            case R.id.concert_act:
-                launchConcertActivity();
-                break;
-            case R.id.camera_act:
-                dispatchTakePictureIntent();
-                break;
-            default:
-                Log.d("onClick", "on click for fragment triggered");
-        }
-    }*/
+    public void showLogin(View v){
+        GoogleLogin newFrag = new GoogleLogin();
+        newFrag.show(getActivity().getSupportFragmentManager(),"googleLogin");
+    }
+
+    //DISCOVER INTENT BELOW
+    public void launchDiscoverActivity() {
+        Intent concertActivity = new Intent(getActivity(), MainActivity.class);
+        startActivity(concertActivity);
+    }
 
     //CONCERT INTENT BELOW
     public void launchConcertActivity() {
         Intent concertActivity = new Intent(getActivity(), SearchConcerts.class);
         startActivity(concertActivity);
-
-    }
-    //DISCOVER INTENT BELOW
-    public void launchDiscoverActivity() {
-        Intent concertActivity = new Intent(getActivity(), MainActivity.class);
-        startActivity(concertActivity);
-
     }
 
     //PICTURE INTENT AND ACTIONS BELOW
@@ -168,6 +153,7 @@ public class DashboardFragment extends Fragment implements View.OnTouchListener{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         galleryAddPic();
     }*/
+
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(currentPhotoPath);
@@ -175,5 +161,4 @@ public class DashboardFragment extends Fragment implements View.OnTouchListener{
         mediaScanIntent.setData(contentUri);
         getActivity().sendBroadcast(mediaScanIntent);
     }
-
 }
